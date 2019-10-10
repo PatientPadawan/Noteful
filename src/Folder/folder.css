@@ -4,3 +4,7 @@
     padding: 5% 0 5% 0;
     width: 100%;
 }
+
+li:last-child.folder {
+    border-bottom: black solid 1px;
+}

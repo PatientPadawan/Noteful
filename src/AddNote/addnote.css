@@ -1,0 +1,5 @@
+.button#addNote {
+    padding: 1.5em 6em;
+    margin: 0.5em 5%;
+    align-self: flex-start;
+}

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import NoteList from '../NoteList/notelist';
-import AddNote from '../AddNote/addnote';
+import './main.css';
 
 class Main extends Component {
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 <NoteList />
-                <AddNote />
             </div>
         )
     }

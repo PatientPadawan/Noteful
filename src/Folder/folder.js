@@ -3,8 +3,8 @@ import './folder.css';
 
 export default function Folder(props) {
     return (
-        <div className='folder'>
+        <li className='folder'>
            Folder {props.folderNumber + 1}
-        </div>
+        </li>
     )
 }

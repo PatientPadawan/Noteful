@@ -1,12 +1,23 @@
-.button {
-    background: white;
-    border: 0;
-    font-family: system-ui, sans-serif;
-    font-size: 1rem;
-    line-height: 1.2;
-    white-space: nowrap;
-    text-decoration: none;
-    padding: 0.25rem 0.5rem;
-    margin: 0.25rem;
-    cursor: pointer;
-  }
+.note {
+  border: solid 1px black;
+  margin: 0.5em 0;
+  width: 90%;
+  align-self: center;
+}
+
+.button#note {
+position: absolute;
+bottom: 1em;
+right: 2em;
+}
+
+.descriptionContainer {
+  padding-left: 1em;
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.noteTitle {
+  margin-left: 1em;
+}

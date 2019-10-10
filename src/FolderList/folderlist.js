@@ -5,11 +5,11 @@ import './folderlist.css'
 class FolderList extends Component {
     render() {
         return (
-            <div className='folderList'>
+            <ul className='folderList'>
                 {Array.apply(0, Array(3)).map(function (x, i) {
                     return <Folder key={i} folderNumber={i}/>;
                 })}
-            </div>
+            </ul>
         )
     }
 }
