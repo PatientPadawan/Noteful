@@ -21,3 +21,7 @@ button#note {
 .noteTitle {
   margin-left: 1em;
 }
+
+.linkNote {
+  color: black;
+}

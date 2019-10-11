@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './note.css';
 
 export default function Note(props) {
@@ -7,7 +8,11 @@ export default function Note(props) {
     const date = dateObject.toLocaleString(['en-GB'], options)
     return (
         <div className='note'>
-            <h2 className='noteTitle'>{props.name}</h2>
+            <h2 className='noteTitle'>
+                <Link to={`/note/${props.id}`} className='linkNote'>
+                    {props.name}
+                </Link>
+            </h2>
             <div className='descriptionContainer'> 
                 Date modified on {date}
                 <button className='button' id='note'>

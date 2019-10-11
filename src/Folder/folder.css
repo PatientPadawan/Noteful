@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.navLink {
+    color: black;
+}
+
 li:last-child.folder {
     border-bottom: black solid 1px;
 }

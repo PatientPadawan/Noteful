@@ -29,6 +29,14 @@ class App extends Component {
             }
           />
           <Route
+            path={`/folder${this.state.DATASTORE.folders.id}`}
+            render={() =>
+              <SideBar
+                folderList={this.state.DATASTORE.folders}
+              />
+            }
+          />
+          <Route
             exact
             path='/'
             render={() =>
