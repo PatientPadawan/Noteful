@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import DATASTORE from './DATASTORE';
 import Header from './Header/header';
 import SideBar from './Sidebar/sidebar';
@@ -18,8 +19,24 @@ class App extends Component {
           <Header />
         </header>
         <main>        
-          <SideBar />
-          <Main />
+          <Route 
+            exact 
+            path='/'
+            render={() =>
+              <SideBar 
+                folderList={this.state.DATASTORE.folders}
+              />
+            }
+          />
+          <Route
+            exact
+            path='/'
+            render={() =>
+              <Main 
+                noteList={this.state.DATASTORE.notes}
+              />
+            }
+          />
         </main>
       </div>
     );

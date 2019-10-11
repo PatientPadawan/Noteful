@@ -4,10 +4,17 @@ import './folderlist.css'
 
 class FolderList extends Component {
     render() {
+        const { folderList } = this.props
         return (
             <ul className='folderList'>
-                {Array.apply(0, Array(3)).map(function (x, i) {
-                    return <Folder key={i} folderNumber={i}/>;
+                {folderList.map(function (x, i) {
+                    return (
+                        <Folder 
+                            key={i} 
+                            id={folderList[i].id} 
+                            folderName={folderList[i].name}
+                        />
+                    )
                 })}
             </ul>
         )

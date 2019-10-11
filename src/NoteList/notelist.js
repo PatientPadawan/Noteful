@@ -5,10 +5,20 @@ import './notelist.css';
 
 class NoteList extends Component {
     render() {
+        const { noteList } = this.props
         return (
             <div className='noteList'>
-                {Array.apply(0, Array(4)).map(function (x, i) {
-                    return <Note key={i} noteNumber={i}/>;
+                {noteList.map(function (x, i) {
+                    return (
+                        <Note 
+                            key={i} 
+                            content={noteList[i].content}
+                            folderId={noteList[i].folderId}
+                            id={noteList[i].id}
+                            modified={noteList[i].modified}
+                            name={noteList[i].name}
+                        />
+                    )
                 })}
                 <AddNote />
             </div>
