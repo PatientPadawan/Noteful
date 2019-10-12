@@ -1,0 +1,15 @@
+#backButton {
+    width: 95%;
+    padding: 1em;
+    margin: 1em 1em;
+}
+
+.notePageNav {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.folderName {
+    margin: 1em;
+}
