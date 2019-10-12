@@ -7,7 +7,7 @@ export default function Note(props) {
     const options = { day: 'numeric', year: 'numeric', month: 'short'}
     const date = dateObject.toLocaleString(['en-GB'], options)
     return (
-        <div className='note'>
+        <div>
             <h2 className='noteTitle'>
                 <Link to={`/note/${props.id}`} className='linkNote'>
                     {props.name}

@@ -6,7 +6,7 @@ class Main extends Component {
     render() {
         return (
             <div className="mainContainer">
-                <NoteList noteList={this.props.noteList}/>
+                <NoteList history={this.props.history} notes={this.props.notes}/>
             </div>
         )
     }
