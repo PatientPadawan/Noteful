@@ -17,6 +17,12 @@ class App extends Component {
     folders: []
   };
 
+  handleDeleteNote = noteId => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteId)
+    })
+  }
+
   componentDidMount() {
     Promise.all([
         fetch(`${config.API_ENDPOINT}/notes`),

@@ -1,5 +1,11 @@
 .button#addNote {
     padding: 1.5em 6em;
     margin: 0.5em 5%;
-    align-self: flex-start;
+}
+
+@media only screen and (max-width: 767px) {
+.button#addNote {
+    padding: 1.5em;
+    width: 90%;
+}
 }

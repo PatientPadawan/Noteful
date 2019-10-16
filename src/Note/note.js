@@ -40,17 +40,21 @@ export default class Note extends Component {
         const options = { day: 'numeric', year: 'numeric', month: 'short'}
         const date = dateObject.toLocaleString(['en-GB'], options)
         return (
-            <div>
+            <div className='noteContainer'>
                 <h2 className='noteTitle'>
                     <Link to={`/note/${id}`} className='linkNote'>
                         {name}
                     </Link>
                 </h2>
+                <button 
+                    className='button' 
+                    id='note'
+                    onClick={this.handleClickDelete}
+                >
+                    Delete
+                </button>
                 <div className='descriptionContainer'> 
                     Date modified on {date}
-                    <button className='button' id='note'>
-                        Delete Note
-                    </button>
                 </div>
             </div>
         )
