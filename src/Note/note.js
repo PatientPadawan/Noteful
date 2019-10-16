@@ -1,24 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import NotefulContext from '../notefulcontext';
+import config from '../config';
 import './note.css';
 
-export default function Note(props) {
-    const dateObject = new Date(props.modified)
-    const options = { day: 'numeric', year: 'numeric', month: 'short'}
-    const date = dateObject.toLocaleString(['en-GB'], options)
-    return (
-        <div>
-            <h2 className='noteTitle'>
-                <Link to={`/note/${props.id}`} className='linkNote'>
-                    {props.name}
-                </Link>
-            </h2>
-            <div className='descriptionContainer'> 
-                Date modified on {date}
-                <button className='button' id='note'>
-                    Delete Note
-                </button>
+export default class Note extends Component {
+    static defaultProps = {
+        onDeleteNote: () => {},
+    }
+    static contextType = NotefulContext;
+
+    handleClickDelete = e => {
+        e.preventDefault()
+        const noteId = this.props.id
+
+        fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+        .then(res => {
+            if (!res.ok)
+            return res.json().then(e => Promise.reject(e))
+            return res.json()
+        })
+        .then(() => {
+            this.context.deleteNote(noteId)
+            this.props.onDeleteNote(noteId)
+        })
+        .catch(error => {
+            console.error({ error })
+        })
+    }
+    
+    render() {
+        const { name, id, modified } = this.props
+        const dateObject = new Date(modified)
+        const options = { day: 'numeric', year: 'numeric', month: 'short'}
+        const date = dateObject.toLocaleString(['en-GB'], options)
+        return (
+            <div>
+                <h2 className='noteTitle'>
+                    <Link to={`/note/${id}`} className='linkNote'>
+                        {name}
+                    </Link>
+                </h2>
+                <div className='descriptionContainer'> 
+                    Date modified on {date}
+                    <button className='button' id='note'>
+                        Delete Note
+                    </button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }

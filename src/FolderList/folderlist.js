@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Folder from '../Folder/folder';
+import NotefulContext from '../notefulcontext';
 import './folderlist.css'
 
 class FolderList extends Component {
+    static contextType = NotefulContext;
+    
     render() {
-        const { folders } = this.props
+        const { folders=[] } = this.context
         return (
             <ul className='folderList'>
                 {folders.map(function (x, i) {
