@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FolderList from '../FolderList/folderlist';
-import AddFolder from '../AddFolder/addfolder';
 import './sidebar.css';
 
 class SideBar extends Component {
@@ -8,7 +8,13 @@ class SideBar extends Component {
         return (
             <div className='sideBar'>
                 <FolderList />
-                <AddFolder />
+                <Link
+                    to={'/add-folder'} 
+                    className="button" 
+                    id='addFolder'
+                >
+                    Add folder
+                </Link>
             </div>
         )
     }

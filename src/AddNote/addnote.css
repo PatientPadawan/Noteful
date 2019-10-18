@@ -1,11 +1,26 @@
-.button#addNote {
-    padding: 1.5em 6em;
-    margin: 0.5em 5%;
+form.addNoteForm {
+    border: solid 1px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    text-align: center;
 }
 
-@media only screen and (max-width: 767px) {
-.button#addNote {
-    padding: 1.5em;
-    width: 90%;
+.addNoteInputContainer {
+    display: flex;
+    flex-direction: column;
 }
+
+.addNoteInput {
+    align-self: flex-end;
+    margin: 0.2em 0 0;
+}
+
+.addNoteButtonGroup {
+    margin: 1em 0 0;
+}
+
+.addNoteButton {
+    margin: 0.25em;
 }

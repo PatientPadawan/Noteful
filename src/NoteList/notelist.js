@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Note from '../Note/note';
-import AddNote from '../AddNote/addnote'
 import NotefulContext from '../notefulcontext';
 import { getNotesForFolder } from '../notes-helpers'
 import './notelist.css';
@@ -19,7 +19,7 @@ export default class NoteList extends Component {
         const notesForFolder = getNotesForFolder(notes, folderId)
 
         return (
-            <section>
+            <section id='noteSection'>
                 <ul className='noteList'>
                 {notesForFolder.map(note =>
                     <li key={note.id} className='note'>
@@ -31,7 +31,13 @@ export default class NoteList extends Component {
                     </li>
                 )}
                 </ul>
-                <AddNote />
+                <Link 
+                    to={'/add-note'}
+                    className="button" 
+                    id='addNote'
+                >
+                    Add note
+                </Link>
             </section>
         )
     }

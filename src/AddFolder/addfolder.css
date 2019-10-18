@@ -1,12 +1,16 @@
-.button#addFolder {
-    width: 95%;
-    align-self: center;
-    margin: 0.5em 0;
+form.addFolderForm {
+    border: solid 1px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
     padding: 1em;
+    text-align: center;
 }
 
-@media only screen and (max-width: 767px) {
-.button#addFolder {
-    padding: 0.5em;
+.addFolderButtonGroup {
+    margin: 1em 0 0;
 }
+
+.addFolderButton {
+    margin: 0.25em
 }
