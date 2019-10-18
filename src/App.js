@@ -17,6 +17,38 @@ class App extends Component {
     folders: []
   };
 
+  handleAddNote = () => {
+    fetch(`${config.API_ENDPOINT}/notes`)
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(e => Promise.reject(e));
+      
+        return res.json()
+    })
+    .then(notes => {
+      this.setState({notes});
+    })
+    .catch(error => {
+      console.error({ error });
+    })
+  }
+
+  handleAddFolder = () => {
+    fetch(`${config.API_ENDPOINT}/folders`)
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(e => Promise.reject(e));
+      
+        return res.json()
+    })
+    .then(folders => {
+      this.setState({folders});
+    })
+    .catch(error => {
+      console.error({ error });
+    })
+  }
+
   handleDeleteNote = noteId => {
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId)
@@ -40,7 +72,7 @@ class App extends Component {
             this.setState({notes, folders});
         })
         .catch(error => {
-            console.error({error});
+            console.error({ error });
         });
   }
   
@@ -57,6 +89,7 @@ class App extends Component {
           ))}
           <Route path="/note/:noteId" component={NotePageNav}/>
           <Route path="/add-folder" component={AddFolder} />
+          <Route path="/add-note" component={AddNote} />
         </>
     );
   }
@@ -73,7 +106,6 @@ class App extends Component {
               />
           ))}
           <Route path="/note/:noteId" component={NotePage}/>
-          <Route path="/add-note" component={AddNote} />
         </>
     );
   }
@@ -87,6 +119,8 @@ class App extends Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
+      addNote: this.handleAddNote,
+      addFolder: this.handleAddFolder
     }
 
     return (

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ValidationError from '../validationerror';
+import NotefulContext from '../notefulcontext';
 import config from '../config';
 import './addfolder.css';
 
@@ -13,6 +14,10 @@ export default class AddFolder extends Component {
             }
         }
     }
+    static defaultProps = {
+        onAddFolder: () => {},
+    }
+    static contextType = NotefulContext;
 
     updateFolderName(name) {
         this.setState({ folderName: { value: name, touched: true }})
@@ -41,10 +46,12 @@ export default class AddFolder extends Component {
             return res.json()
         })
         .then(() => {
-            this.props.history.push('/');
+            this.context.addFolder()
+            this.props.onAddFolder()
+            this.props.history.push('/')
         })
         .catch(error => {
-            console.log({ error })
+            console.error({ error })
         })
     }
 
