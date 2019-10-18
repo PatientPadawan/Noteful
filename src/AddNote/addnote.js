@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ValidationError from '../validationerror';
 import NotefulContext from '../notefulcontext';
+import { findFolderID } from '../notes-helpers';
 import config from '../config';
 import './addnote.css';
 
@@ -20,17 +21,16 @@ export default class AddNote extends Component {
                 value: '',
                 touched: false
             },
-            date: {
-                value: ''
-            }
         }
     }
     static defaultProps = {
         onAddNote: () => {},
         folders: [],
+        history: {
+            goBack: () => {}
+        }
     }
     static contextType = NotefulContext;
-    
 
     updateNoteName(noteName) {
         this.setState({ name: { value: noteName, touched: true }})
@@ -46,20 +46,21 @@ export default class AddNote extends Component {
 
     handleCancelClick = (e) => {
         e.preventDefault();
-        this.props.history.push('/');
+        this.props.history.goBack();
     }
 
     handleSubmitClick = (e) => {
         e.preventDefault();
         const modified = new Date();
         const { name, content, folder } = this.state;
+        const matchingFolder = findFolderID(this.context.folders, folder.value)
         fetch(`${config.API_ENDPOINT}/notes`, {
             method: 'POST',
             body: JSON.stringify({
                 "id": "",
                 "name": `${name.value}`,
                 "modified": `${modified.toISOString()}`,
-                "folderId": `${folder.value}`,
+                "folderId": `${matchingFolder.id}`,
                 "content": `${content.value}`
             }),
             headers: {
@@ -73,7 +74,7 @@ export default class AddNote extends Component {
         .then(() => {
             this.context.addNote()
             this.props.onAddNote()
-            this.props.history.push('/')
+            this.props.history.goBack()
         })
         .catch(error => {
             console.error({ error })
@@ -97,8 +98,17 @@ export default class AddNote extends Component {
     validateFolderName() {
         const folders = this.context.folders;
         const folderName = this.state.folder.value.trim();
-        for (var name of folders) {
-            console.log(name);
+        let match = null
+        for (let i of folders) {
+            if (folderName === i.name) {
+                match = true;
+                break;
+            } else {
+                match = false;
+            }
+        }
+        if (match !== true) {
+            return 'Folder name must match exactly'
         }
     }
 
@@ -127,7 +137,8 @@ export default class AddNote extends Component {
                             name='noteContent'
                             id='noteContent'
                         onChange={e => this.updateNoteContent(e.target.value)}
-                        />       
+                        />
+                        {this.state.content.touched && <ValidationError message={noteContentError}/>}       
                     </div>
                     <div className='addNoteInput'>           
                         <label>Folder name: </label>
@@ -137,6 +148,7 @@ export default class AddNote extends Component {
                             id='noteFolderName'
                             onChange={e => this.updateNoteFolder(e.target.value)}
                         />
+                        {this.state.folder.touched && <ValidationError message={noteFolderError}/>}
                     </div>
                 </div>
                 <div className='addNoteButtonGroup'>
@@ -144,9 +156,11 @@ export default class AddNote extends Component {
                         onClick={this.handleSubmitClick}
                         type='submit'
                         className='addNoteButton'
-                        /* disabled={
-                            this.validateFolderName()
-                        } */
+                        disabled={
+                            this.validateNoteName() ||
+                            this.validateNoteContent() ||
+                            this.validateFolderName() 
+                        }
                     >
                     Submit
                     </button>

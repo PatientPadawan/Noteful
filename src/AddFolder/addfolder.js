@@ -16,6 +16,7 @@ export default class AddFolder extends Component {
     }
     static defaultProps = {
         onAddFolder: () => {},
+        goBack: () => {}
     }
     static contextType = NotefulContext;
 
@@ -25,7 +26,7 @@ export default class AddFolder extends Component {
 
     handleCancelClick = (e) => {
         e.preventDefault();
-        this.props.history.push('/');
+        this.props.history.goBack()
     }
 
     handleSubmitClick = (e) => {
@@ -48,7 +49,7 @@ export default class AddFolder extends Component {
         .then(() => {
             this.context.addFolder()
             this.props.onAddFolder()
-            this.props.history.push('/')
+            this.props.history.goBack()
         })
         .catch(error => {
             console.error({ error })
