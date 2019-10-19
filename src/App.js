@@ -125,7 +125,7 @@ export default class App extends Component {
 
     return (
       <NotefulContext.Provider value={contextValue}>
-        <div className='App'>
+        <>
           <header>
             <Header />
           </header>
@@ -133,7 +133,7 @@ export default class App extends Component {
             {this.renderNavRoutes()}
             {this.renderMainRoutes()}
           </main>
-        </div>
+        </>
       </NotefulContext.Provider>
     );
   }

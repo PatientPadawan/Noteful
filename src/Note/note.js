@@ -41,7 +41,7 @@ export default class Note extends Component {
         const options = { day: 'numeric', year: 'numeric', month: 'short'}
         const date = dateObject.toLocaleString(['en-GB'], options)
         return (
-            <div className='noteContainer'>
+            <article className='noteContainer'>
                 <h2 className='noteTitle'>
                     <Link to={`/note/${id}`} className='linkNote'>
                         {name}
@@ -57,7 +57,7 @@ export default class Note extends Component {
                 <div className='descriptionContainer'> 
                     Date modified on {date}
                 </div>
-            </div>
+            </article>
         )
     }
 }
@@ -65,5 +65,5 @@ export default class Note extends Component {
 Note.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    modified: PropTypes.string.isRequired
+    modified: PropTypes.string
 }

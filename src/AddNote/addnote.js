@@ -121,7 +121,7 @@ export default class AddNote extends Component {
                 <h2 className='addNoteHeader'>Create a new note</h2>
                 <div className='addNoteInputContainer'>
                     <div className='addNoteInput'>
-                        <label>Note name: </label>
+                        <label htmlFor='noteName'>Note name: </label>
                         <input
                             type='text'
                             name='noteName'
@@ -131,7 +131,7 @@ export default class AddNote extends Component {
                         {this.state.name.touched && <ValidationError message={noteNameError}/>}
                     </div>
                     <div className='addNoteInput'>
-                        <label>Content: </label>
+                        <label htmlFor='noteContent'>Content: </label>
                         <input
                             type='text'
                             name='noteContent'
@@ -141,7 +141,7 @@ export default class AddNote extends Component {
                         {this.state.content.touched && <ValidationError message={noteContentError}/>}       
                     </div>
                     <div className='addNoteInput'>           
-                        <label>Folder name: </label>
+                        <label htmlFor='noteFolderName'>Folder name: </label>
                         <input
                             type='text'
                             name='noteFolderName'

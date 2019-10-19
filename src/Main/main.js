@@ -5,9 +5,9 @@ import './main.css';
 class Main extends Component {
     render() {
         return (
-            <div className="mainContainer">
+            <section className="mainContainer">
                 <NoteList {...this.props}/>
-            </div>
+            </section>
         )
     }
 }

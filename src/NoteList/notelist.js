@@ -19,7 +19,7 @@ export default class NoteList extends Component {
         const { notes=[] } = this.context
         const notesForFolder = getNotesForFolder(notes, folderId)
         return (
-            <section id='noteSection'>
+            <div id='noteSection'>
                 <ul className='noteList'>
                 {notesForFolder.map(note =>
                     <li key={note.id} className='note'>
@@ -40,7 +40,7 @@ export default class NoteList extends Component {
                 >
                     Add note
                 </Link>
-            </section>
+            </div>
         )
     }
 }

@@ -6,7 +6,7 @@ import './sidebar.css';
 class SideBar extends Component {
     render() {
         return (
-            <div className='sideBar'>
+            <nav className='sideBar'>
                 <FolderList />
                 <Link
                     to={'/add-folder'} 
@@ -15,7 +15,7 @@ class SideBar extends Component {
                 >
                     Add folder
                 </Link>
-            </div>
+            </nav>
         )
     }
 }

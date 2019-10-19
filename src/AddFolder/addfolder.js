@@ -70,7 +70,7 @@ export default class AddFolder extends Component {
             <form className="addFolderForm">
                 <h2 className="addFolderHeader">Create a new folder</h2>
                 <div className='addFolderInputContainer'>
-                    <label>Folder name: </label>
+                    <label htmlFor='folderName'>Folder name: </label>
                     <input
                         type='text'
                         className='addFolderInput'
