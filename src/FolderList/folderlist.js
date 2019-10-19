@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Folder from '../Folder/folder';
+import FolderError from '../ErrorBoundaries/folderError';
 import NotefulContext from '../notefulcontext';
 import './folderlist.css'
 
@@ -12,11 +13,13 @@ class FolderList extends Component {
             <ul className='folderList'>
                 {folders.map(function (x, i) {
                     return (
-                        <Folder 
-                            key={i} 
-                            id={folders[i].id} 
-                            folderName={folders[i].name}
-                        />
+                        <FolderError key={i}>
+                            <Folder 
+                                key={i} 
+                                id={folders[i].id} 
+                                folderName={folders[i].name}
+                            />
+                        </FolderError>
                     )
                 })}
             </ul>

@@ -11,7 +11,7 @@ import NotePage from './NotePage/notepage';
 import config from './config';
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
   state = {
     notes: [],
     folders: []
@@ -139,4 +139,3 @@ class App extends Component {
   }
 }
 
-export default App;

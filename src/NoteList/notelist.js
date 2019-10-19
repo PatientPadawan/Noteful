@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Note from '../Note/note';
+import NoteError from '../ErrorBoundaries/noteError';
 import NotefulContext from '../notefulcontext';
-import { getNotesForFolder } from '../notes-helpers'
+import { getNotesForFolder } from '../notes-helpers';
 import './notelist.css';
 
 export default class NoteList extends Component {
@@ -17,17 +18,19 @@ export default class NoteList extends Component {
         const { folderId } = this.props.match.params
         const { notes=[] } = this.context
         const notesForFolder = getNotesForFolder(notes, folderId)
-
+        console.log(this.props);
         return (
             <section id='noteSection'>
                 <ul className='noteList'>
                 {notesForFolder.map(note =>
                     <li key={note.id} className='note'>
-                        <Note
-                            id={note.id}
-                            name={note.name}
-                            modified={note.modified}
-                        />
+                        <NoteError>
+                            <Note
+                                id={note.id}
+                                name={note.name}
+                                modified={note.modified}
+                            />
+                        </NoteError>
                     </li>
                 )}
                 </ul>

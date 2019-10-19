@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NotefulContext from '../notefulcontext';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './note.css';
 
 export default class Note extends Component {
@@ -59,4 +60,10 @@ export default class Note extends Component {
             </div>
         )
     }
+}
+
+Note.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired
 }
