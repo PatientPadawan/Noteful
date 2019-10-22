@@ -81,6 +81,16 @@ export default class AddNote extends Component {
         })
     }
 
+    createFolderList() {
+        const folders = this.context.folders;
+        let noteFolders = document.getElementById( "noteFolders" )
+        folders.forEach((folder) => {
+            let option = document.createElement( 'option' );
+            option.value = folder.name;
+            noteFolders.appendChild( option );
+        })
+    }
+
     validateNoteName() {
         const noteName = this.state.name.value.trim();
         if (noteName.length === 0) {
@@ -115,7 +125,7 @@ export default class AddNote extends Component {
     render() {
         const noteNameError = this.validateNoteName();
         const noteContentError = this.validateNoteContent();
-        const noteFolderError = this.validateFolderName(); 
+        const noteFolderError = this.validateFolderName();
         return(
             <form className='addNoteForm'>
                 <h2 className='addNoteHeader'>Create a new note</h2>
@@ -143,11 +153,14 @@ export default class AddNote extends Component {
                     <div className='addNoteInput'>           
                         <label htmlFor='noteFolderName'>Folder name: </label>
                         <input
-                            type='text'
+                            list='noteFolders'
                             name='noteFolderName'
                             id='noteFolderName'
                             onChange={e => this.updateNoteFolder(e.target.value)}
                         />
+                        <datalist id='noteFolders'>
+                             {/* datalist is programmatically rendered by createFolderList function */}
+                        </datalist>
                         {this.state.folder.touched && <ValidationError message={noteFolderError}/>}
                     </div>
                 </div>
@@ -173,5 +186,9 @@ export default class AddNote extends Component {
                 </div>
             </form>
         )
+    }
+
+    componentDidMount() {
+        this.createFolderList();
     }
 }
