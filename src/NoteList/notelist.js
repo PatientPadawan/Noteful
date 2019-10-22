@@ -4,6 +4,7 @@ import Note from '../Note/note';
 import NoteError from '../ErrorBoundaries/noteError';
 import NotefulContext from '../notefulcontext';
 import { getNotesForFolder } from '../notes-helpers';
+import PropTypes from 'prop-types';
 import './notelist.css';
 
 export default class NoteList extends Component {
@@ -43,4 +44,10 @@ export default class NoteList extends Component {
             </div>
         )
     }
+}
+
+NoteList.propTypes = {
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
 }

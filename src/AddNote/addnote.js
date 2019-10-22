@@ -3,6 +3,7 @@ import ValidationError from '../validationerror';
 import NotefulContext from '../notefulcontext';
 import { findFolderID } from '../notes-helpers';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './addnote.css';
 
 export default class AddNote extends Component {
@@ -191,4 +192,12 @@ export default class AddNote extends Component {
     componentDidMount() {
         this.createFolderList();
     }
+}
+
+AddNote.propTypes = {
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    onAddNote: PropTypes.func.isRequired,
+    folders: PropTypes.array.isRequired
 }

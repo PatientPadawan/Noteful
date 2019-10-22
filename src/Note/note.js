@@ -63,7 +63,9 @@ export default class Note extends Component {
 }
 
 Note.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    modified: PropTypes.string
+    id: PropTypes.string,
+    name: PropTypes.string,
+    modified: PropTypes.string,
+    className: PropTypes.string,
+    onDeleteNote: PropTypes.func.isRequired
 }

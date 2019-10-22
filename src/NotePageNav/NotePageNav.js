@@ -1,7 +1,10 @@
 import React from 'react'
-import './NotePageNav.css'
 import NotefulContext from '../notefulcontext';
 import { findFolder, findNote } from '../notes-helpers';
+import PropTypes from 'prop-types';
+import './NotePageNav.css'
+
+
 
 export default class NotePageNav extends React.Component {
   static defaultProps = {
@@ -15,6 +18,7 @@ export default class NotePageNav extends React.Component {
   static contextType = NotefulContext;
 
   render() {
+    console.log(this.props)
     const { notes, folders } = this.context
     const { noteId } = this.props.match.params
     const note = findNote(notes, noteId) || {}
@@ -39,4 +43,10 @@ export default class NotePageNav extends React.Component {
       </div>
     )
   }
+}
+
+NotePageNav.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 }

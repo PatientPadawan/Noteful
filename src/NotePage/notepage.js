@@ -2,6 +2,7 @@ import React from 'react'
 import Note from '../Note/note'
 import NotefulContext from '../notefulcontext';
 import { findNote } from '../notes-helpers';
+import PropTypes from 'prop-types';
 import './notepage.css'
 
 export default class NotePage extends React.Component {
@@ -41,4 +42,10 @@ export default class NotePage extends React.Component {
       </section>
     )
   }
+}
+
+NotePage.propTypes = {
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 }

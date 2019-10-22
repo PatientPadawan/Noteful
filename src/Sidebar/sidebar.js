@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FolderList from '../FolderList/folderlist';
+import PropTypes from 'prop-types';
 import './sidebar.css';
 
-class SideBar extends Component {
+export default class SideBar extends Component {
     render() {
         return (
             <nav className='sideBar'>
@@ -20,4 +21,8 @@ class SideBar extends Component {
     }
 }
 
-export default SideBar;
+SideBar.propTypes = {
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
+}

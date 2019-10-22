@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ValidationError from '../validationerror';
 import NotefulContext from '../notefulcontext';
 import config from '../config';
+import PropTypes from 'prop-types';
 import './addfolder.css';
 
 export default class AddFolder extends Component {
@@ -99,4 +100,12 @@ export default class AddFolder extends Component {
             </form>
         )
     }
+}
+
+AddFolder.propTypes = {
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    goBack: PropTypes.func.isRequired, 
+    onAddFolder: PropTypes.func.isRequired   
 }
